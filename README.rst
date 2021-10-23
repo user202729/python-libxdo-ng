@@ -41,7 +41,7 @@ rocks!" to that window.
     from xdo import Xdo
     xdo = Xdo()
     win_id = xdo.select_window_with_click()
-    xdo.enter_text_window(win_id, 'Python rocks!')
+    xdo.enter_text_window(win_id, b'Python rocks!')
 
 
 Compatibility
