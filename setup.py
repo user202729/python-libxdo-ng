@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = '0.1.2a1'
+version = '0.1.3'
 install_requires = ['six']
 
 here = os.path.dirname(__file__)
@@ -14,10 +14,10 @@ with open(os.path.join(here, 'CHANGELOG.rst')) as fp:
     longdesc += "\n\n" + fp.read()
 
 setup(
-    name='python-libxdo',
+    name='python-libxdo-ng',
     version=version,
     packages=find_packages(),
-    url='https://github.com/rshk/python-libxdo',
+    url='https://github.com/user202729/python-libxdo',
 
     # 3-clause BSD, same as xdotool
     license='BSD License',
