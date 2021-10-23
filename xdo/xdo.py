@@ -5,10 +5,9 @@ Ctypes bindings for libxdo
 """
 
 import ctypes
-from ctypes import c_uint8 as c_uchar
 from ctypes import (
     POINTER, Structure, c_bool, c_char, c_char_p, c_int, c_long, c_uint,
-    c_ulong, c_void_p, c_wchar)
+    c_ulong, c_void_p, c_wchar, c_ubyte)
 
 from ctypes.util import find_library
 
@@ -179,11 +178,11 @@ class XErrorEvent(Structure):
         # unsigned long serial;   /* serial number of failed request */
         ('serial', c_ulong),
         # unsigned char error_code;       /* error code of failed request */
-        ('error_code', c_uchar),
+        ('error_code', c_ubyte),
         # unsigned char request_code;     /* Major op-code of failed request */
-        ('request_code', c_uchar),
+        ('request_code', c_ubyte),
         # unsigned char minor_code;       /* Minor op-code of failed request */
-        ('minor_code', c_uchar),
+        ('minor_code', c_ubyte),
     ]
 
 
@@ -1212,7 +1211,7 @@ Generic property fetch.
 #     const xdo_t *xdo, Window window, const char *property,
 #     unsigned char **value, long *nitems, Atom *type, int *size);
 libxdo.xdo_get_window_property.argtypes = (
-    POINTER(xdo_t), window_t, c_char_p, POINTER(c_char_p), POINTER(c_long),
+    POINTER(xdo_t), window_t, c_char_p, POINTER(POINTER(c_ubyte)), POINTER(c_long),
     POINTER(atom_t), POINTER(c_int))
 libxdo.xdo_get_window_property.restype = c_int
 libxdo.xdo_get_window_property.errcheck = _errcheck

@@ -748,7 +748,7 @@ class Xdo(object):
             "get_window_property_by_atom() is not implemented (yet)")
 
     def get_window_property(self, window, name):
-        value = ctypes.c_char_p()  # unsigned char **value
+        value = ctypes.POINTER(ctypes.c_ubyte)()  # unsigned char **value
         nitems = ctypes.c_long()
         type_ = Atom()
         size = ctypes.c_int(0)
@@ -759,13 +759,14 @@ class Xdo(object):
 
         # todo: we need to convert atoms into their actual type..
         values = []
-        for i in range(nitems):
+        for i in range(nitems.value):
             i_val = value[i]
             # i_type = type_[i]
             values.append(i_val)
             # todo: perform type conversion for "Atom"s of this type?
             # todo: how does the "Atom" thing work?
 
+        _libX11.XFree(value)
         return values
 
     def get_input_state(self):
